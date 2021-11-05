@@ -14,6 +14,9 @@ logging.basicConfig(filename="Info.log", level="DEBUG")
 
 parser = argparse.ArgumentParser(description=":Descripcion de los parametros:")
 # opc: opciones
+help1 = """-opc (1=codificar mensaje, 2=decodificar mensaje,
+           3=hackear mensaje codificado, 4=investigar con llave API,
+           5=Enviar un email, 6=escaneo de puertos, 7=DNS cache)"""
 parser.add_argument("-opc", type=int, help=help1)
 # Si quieres codificar/decodificar/hackear un mensaje
 # tienes que escoger entre cifrado cesar o de transposicion
@@ -168,8 +171,8 @@ if __name__ == '__main__':
                 print("[!] Se necesitan mas parametros para enviar el correo")
 
         elif data.opc == 6:
-            if ((vDatos(data.ip) is True) and (vDatos(data.i) is True)and
-               (vDatos(data.f) is True)):
+            if ((data.ip != None) and (data.i != None)and
+               (data.f != None)):
                 scanPort(data.ip, data.i, data.f)
             else:
                 print("No se puede realizar el escaneo", end=", ")
