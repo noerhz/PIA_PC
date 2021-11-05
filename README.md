@@ -1,6 +1,7 @@
+# Tareas de Ciberseguridad Automatizadas
 
-
-# Para codificar un mensaje
+Para codificar un mensaje
+-------------------------
 
 	-opc 1
 		
@@ -27,7 +28,8 @@ Cifrado de Transposicion:
 	Application.py -opc 1 -lang 2 -msg "Este es un mensaje de prueba" -t_cifr 2 -key "contraseña"
 
 
-#  Para Decodificar un mensaje
+Para Decodificar un mensaje
+---------------------------
 
 	-opc 2
 	
@@ -55,7 +57,8 @@ Cifrado de Transposicion:
 
 
 
-# Para Hackear un mensaje
+Para Hackear un mensaje
+-----------------------
 
 	-lang Escoge un idioma, 1 para ingles y 2 para español
 
@@ -71,7 +74,8 @@ Cifrado de Transposicion:
 
 	cifrado_cesar.py -lang 2 -msg "Escribe el mensaje codificado" -t_cifr 2 
 
-# Para obtener obtener informacion de una organizacion con tu llave API de hunter, estas son las opciones:
+Para obtener obtener informacion de una organizacion con tu llave API de hunter, estas son las opciones:
+--------------------------------------------------------------------------------------------------------	
 	
 	-opc 4
 	
@@ -87,7 +91,8 @@ Cifrado de Transposicion:
 
 	Application.py -opc 4 -apikey '31mn93abbx811o05q119lDp1mms931ml5c31jjj7' -domain "google"
 
-# Para mandar un correo (se puede adjuntar solo una imagen en el correo):
+Para mandar un correo (se puede adjuntar solo una imagen en el correo):
+-----------------------------------------------------------------------
 
 	-opc 5
 	
@@ -128,8 +133,9 @@ Si desea adjuntar una imagen a su correo:
 	
 	-subj "Asunto:" -msg "Su mensaje" -pic "Imagen.jpg","C:\Users\UserName\Documents"
 
-# Para verificar que puerto esta abierto:
-	
+Para verificar que puerto esta abierto:
+---------------------------------------
+
 	-opc 6 
 	
 	-ip "Escriba la IP"
@@ -142,8 +148,9 @@ Si desea adjuntar una imagen a su correo:
 	
 	Application.py -opc 6 -ip "192.168.1.15" -i 88 -f 10030
 
-# Para verficar el DNS del cache:
-	
+Para verficar el DNS del cache:
+-------------------------------
+
 	-opc 7
 
 *Ejemplo(s):*
