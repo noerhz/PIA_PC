@@ -38,7 +38,8 @@ help4 = "-domain '(www.twitter.com / twitter.com / twitter)'"
 parser.add_argument("-domain", type=str, help=help4)
 # Si quieres enviar un mensaje especifica el tipo de correo
 # puede ser: 1=gmail, 2=outlook/hotmail
-parser.add_argument("-t_email", type=int, help='-t_email (1=gmail, 2=hotmail/outlook)')
+help5 = "-t_email (1=gmail, 2=hotmail/outlook)"
+parser.add_argument("-t_email", type=int, help=help5)
 # Agrega tu correo y tu contraseña para accesaar a tu cuenta de correo
 parser.add_argument("-email", type=str, help='-email "email@example.com"')
 parser.add_argument("-passw", type=str, help='-pass "your_password"')
@@ -47,7 +48,8 @@ parser.add_argument("-to", type=str, help='-to "email@example.com"')
 # Agrega el asunto del correo
 parser.add_argument("-subj", type=str, help='-subj "subject"')
 # Si quieres enviar una imagen en tu correo, agrega estos parametros
-parser.add_argument("-pic", type=str, help='-pic "nombre_imagen.jpg","c:\\users\\name\\pictures"')
+help6 = '-pic "nombre_imagen.jpg","c:\\users\\name\\pictures"'
+parser.add_argument("-pic", type=str, help=help6)
 # Si quieres saber que puertos estan abiertos
 # parser.add_argument("-ip", type=str, help='-ip "192.168.1.19"')
 parser.add_argument("-ip", type=str, help="-ip IP a escanear ")
@@ -110,8 +112,7 @@ if __name__ == '__main__':
             h.saveInfo(h.search())
 
         elif data.opc == 5:
-           se = SendEmail()
-
+            se = SendEmail()
             t_email = data.t_email
             email = data.email
             password = data.passw
@@ -120,11 +121,11 @@ if __name__ == '__main__':
             se.setMessage(data.msg)
             msg = se.getMessage()
 
-
             part = ""
-            if(t_email != None and email != None and password != None
-                and to != None and subject != None and msg != None
-                and data.pic != None):
+            if(t_email is not None and email is not None and
+               password is not None and to is not None and
+               subject is not None and msg is not None and
+               data.pic is not None):
 
                 part = ""
                 picture = ""
@@ -150,15 +151,16 @@ if __name__ == '__main__':
                     se.sendEmail(subject, msg)
 
                 else:
-                    logging.warning("Tienes que agregar el nombre de la imagen y su directorio")
+                    mensage = "! agrega el nombre de la imagen y su directorio"
+                    logging.warning(mensage)
                     print("[!] Solo puedes agregar una imagen y un directorio")
                     print("::: Cerrando programa...")
                     time.sleep(2)
                     exit()
 
-            elif(t_email != None and email != None and password != None
-                and to != None and subject != None and msg != None
-                and data.pic == None):
+            elif(t_email is not None and email is not None and
+                 password is not None and to is not None and
+                 subject is not None and msg is not None and data.pic is None):
 
                 se.setOpc(int(t_email))
                 se.setEmailAccount(email)
@@ -171,8 +173,8 @@ if __name__ == '__main__':
                 print("[!] Se necesitan mas parametros para enviar el correo")
 
         elif data.opc == 6:
-            if ((data.ip != None) and (data.i != None)and
-               (data.f != None)):
+            if ((data.ip is not None) and (data.i is not None)and
+               (data.f is not None)):
                 scanPort(data.ip, data.i, data.f)
             else:
                 print("No se puede realizar el escaneo", end=", ")
