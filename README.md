@@ -133,7 +133,7 @@ Si desea adjuntar una imagen a su correo:
 	
 	-subj "Asunto:" -msg "Su mensaje" -pic "Imagen.jpg","C:\Users\UserName\Documents"
 
-Para verificar que puerto esta abierto:
+Para escaneo de puertos:
 ---------------------------------------
 
 	-opc 6 
