@@ -51,9 +51,9 @@ Cifrado de Transposicion:
 	
 *Ejemplo(s):*
 	
-	cifrado_cesar.py -lang 1 -msg "Write the encoded message" -rot 13
+	Application.py -lang 1 -msg "Write the encoded message" -rot 13
 	
-	cifrado_cesar.py -lang 2 -msg "Escribe el mensaje codificado" -key "contraseña"
+	Application.py -lang 2 -msg "Escribe el mensaje codificado" -key "contraseña"
 
 
 
@@ -68,11 +68,11 @@ Para Hackear un mensaje
 
 Cifrado Cesar: 
 
-	cifrado_cesar.py -lang 1 -msg "Write the encoded message" -t_cifr 1
+	Application.py -lang 1 -msg "Write the encoded message" -t_cifr 1
 
 Cifrado de Transposicion:
 
-	cifrado_cesar.py -lang 2 -msg "Escribe el mensaje codificado" -t_cifr 2 
+	Application.py -lang 2 -msg "Escribe el mensaje codificado" -t_cifr 2 
 
 Para obtener obtener informacion de una organizacion con tu llave API de hunter, estas son las opciones:
 --------------------------------------------------------------------------------------------------------	
