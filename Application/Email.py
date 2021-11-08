@@ -297,3 +297,4 @@ class SendEmail(Message.Message):
             print(":[!] Cerrando programa...")
             time.sleep(2)
             exit()
+            
