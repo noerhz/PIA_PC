@@ -51,9 +51,9 @@ Cifrado de Transposicion:
 	
 *Ejemplo(s):*
 	
-	Application.py -lang 1 -msg "Write the encoded message" -rot 13
+	Application.py -lang 1 -msg "Write the encoded message" -t_cifr -rot 13
 	
-	Application.py -lang 2 -msg "Escribe el mensaje codificado" -key "contraseña"
+	Application.py -lang 2 -msg "Escribe el mensaje codificado" -t_cifr -key "contraseña"
 
 
 
