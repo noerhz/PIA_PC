@@ -87,11 +87,11 @@ Para obtener obtener informacion de una organizacion con tu llave API de hunter,
 
 *Ejamplo(s):*
 
-	Application.py -opc 4 -apikey '31mn93abbx811o05q119lDp1mms931ml5c31jjj7' -domain "www.google.com"
+	Application.py -opc 4 -apikey "31mn93abbx811o05q119lDp1mms931ml5c31jjj7" -domain "www.google.com"
 
-	Application.py -opc 4 -apikey '31mn93abbx811o05q119lDp1mms931ml5c31jjj7' -domain "google.com"
+	Application.py -opc 4 -apikey "31mn93abbx811o05q119lDp1mms931ml5c31jjj7" -domain "google.com"
 
-	Application.py -opc 4 -apikey '31mn93abbx811o05q119lDp1mms931ml5c31jjj7' -domain "google"
+	Application.py -opc 4 -apikey "31mn93abbx811o05q119lDp1mms931ml5c31jjj7" -domain "google"
 
 Para mandar un correo (se puede adjuntar solo una imagen en el correo):
 -----------------------------------------------------------------------
