@@ -60,6 +60,8 @@ Cifrado de Transposicion:
 Para Hackear un mensaje
 -----------------------
 
+	-opc 3
+
 	-lang Escoge un idioma, 1 para ingles y 2 para español
 
 	-msg "Escribe tu mensaje codificado"
@@ -68,11 +70,11 @@ Para Hackear un mensaje
 
 Cifrado Cesar: 
 
-	Application.py -lang 1 -msg "Write the encoded message" -t_cifr 1
+	Application.py -opc 3 -lang 1 -msg "Write the encoded message" -t_cifr 1
 
 Cifrado de Transposicion:
 
-	Application.py -lang 2 -msg "Escribe el mensaje codificado" -t_cifr 2 
+	Application.py -opc 3 -lang 2 -msg "Escribe el mensaje codificado" -t_cifr 2 
 
 Para obtener obtener informacion de una organizacion con tu llave API de hunter, estas son las opciones:
 --------------------------------------------------------------------------------------------------------	
