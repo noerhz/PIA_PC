@@ -12,49 +12,43 @@ import os
 
 logging.basicConfig(filename="Info.log", level="DEBUG")
 
-parser = argparse.ArgumentParser(description=":Descripcion de los parametros:")
+parser = argparse.ArgumentParser(description="Descripcion de los parametros:")
 # opc: opciones
-help1 = """-opc (1=codificar mensaje, 2=decodificar mensaje,
+parser.add_argument("-opc", type=int,
+help = """-opc (1=codificar mensaje, 2=decodificar mensaje,
            3=hackear mensaje codificado, 4=investigar con llave API,
-           5=Enviar un email, 6=escaneo de puertos, 7=DNS cache)"""
-parser.add_argument("-opc", type=int, help=help1)
-# Si quieres codificar/decodificar/hackear un mensaje
+           5=Enviar un email, 6=escaneo de puertos, 7=DNS cache)""")
+# Si quieres codificar/decodificar/hackear un mensaje,
 # tienes que escoger entre cifrado cesar o de transposicion
-help2 = "-t_cifr (1=Cesar, 2=Transposicion)"
-parser.add_argument("-t_cifr", type=int, help=help2)
+parser.add_argument("-t_cifr", type=int, help="-t_cifr (1=Cesar, 2=Transposicion)")
 # Hay que definir el tipo de idioma de tu mensaje
 parser.add_argument("-lang", type=int, help='-lang (1=Ingles,2=Español)')
 # msg: agrega tu mensaje
-parser.add_argument("-msg", type=str, help='-msg "Este es un mensaje"')
-# Si escogiste cifrado cesar, escribe el numero de veces que
-# quieres que se roten las palabras
+parser.add_argument("-msg", type=str, help='-msg "Aqui va el mensaje"')
+# Si escogiste cifrado cesar, escribe el numero de permutaciones 
+# que deseas que tenga tu mensaje
 parser.add_argument("-rot", type=int, help='-rot (entre 1 y 25)')
-# Si escogiste transposicion, escribe la contraseña
-parser.add_argument("-key", type=str, help="-key 'keyword'")
+# Si escogiste transposicion, escribe una llave
+parser.add_argument("-key", type=str, help="-key 'llave'")
 # Si quieres investigar a una organizacion con su llave API de hunter
-help3 = "-apikey '31mn93abbx811o05q119lDp1mms931ml5c31jjj7'"
-parser.add_argument("-apikey", type=str, help=help3)
-help4 = "-domain '(www.twitter.com / twitter.com / twitter)'"
-parser.add_argument("-domain", type=str, help=help4)
+parser.add_argument("-apikey", type=str, help="-apikey '31mn93abbx811o05q119lDp1mms931ml5c31jjj7'")
+parser.add_argument("-domain", type=str, help="-domain '(www.twitter.com / twitter.com / twitter)'")
 # Si quieres enviar un mensaje especifica el tipo de correo
 # puede ser: 1=gmail, 2=outlook/hotmail
-help5 = "-t_email (1=gmail, 2=hotmail/outlook)"
-parser.add_argument("-t_email", type=int, help=help5)
+parser.add_argument("-t_email", type=int, help='-t_email (1=gmail, 2=hotmail/outlook)')
 # Agrega tu correo y tu contraseña para accesaar a tu cuenta de correo
-parser.add_argument("-email", type=str, help='-email "email@example.com"')
-parser.add_argument("-passw", type=str, help='-pass "your_password"')
+parser.add_argument("-email", type=str, help='-email "email@ejemplo.com"')
+parser.add_argument("-passw", type=str, help='-pass "tu_contraseña"')
 # Agrega el correo al que quieres enviar tu mensaje
 parser.add_argument("-to", type=str, help='-to "email@example.com"')
 # Agrega el asunto del correo
 parser.add_argument("-subj", type=str, help='-subj "subject"')
 # Si quieres enviar una imagen en tu correo, agrega estos parametros
-help6 = '-pic "nombre_imagen.jpg","c:\\users\\name\\pictures"'
-parser.add_argument("-pic", type=str, help=help6)
+parser.add_argument("-pic", type=str, help='-pic "name_picture.jpg","c:\\users\\name\\pictures"')
 # Si quieres saber que puertos estan abiertos
-# parser.add_argument("-ip", type=str, help='-ip "192.168.1.19"')
-parser.add_argument("-ip", type=str, help="-ip IP a escanear ")
-parser.add_argument("-i", type=int, help="-i Inicio de los puertos a escanear")
-parser.add_argument("-f", type=int, help="-f Final de los puertos a escanear")
+parser.add_argument("-ip", type=str, help='-ip "IP a escanear"')
+parser.add_argument("-i", type=int, help='-i "Inicio de los puertos a escanear"')
+parser.add_argument("-f", type=int, help='-f "Final de los puertos a escanear"')
 data = parser.parse_args()
 
 
