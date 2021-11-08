@@ -255,9 +255,9 @@ class SendEmail(Message.Message):
     #####################################################################
     def sendEmail(self, subject, msg):
         message = EmailMessage()
-        message["Asunto"] = subject
-        message["De"] = self.email_account
-        message["Para"] = self.to
+        message["From"] = self.email_account
+        message["To"] = self.to
+        message["Subject"] =  subject
         message.set_content(msg)
 
         if len(self.pictures) > 0:
