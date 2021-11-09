@@ -148,7 +148,7 @@ Para escaneo de puertos:
 
 *Ejemplo(s):*
 	
-	Application.py -opc 6 -ip "192.168.1.15" -i 88 -f 10030
+	Application.py -opc 6 -ip "192.168.1.15" -i "88" -f "10030"
 
 Para verficar el DNS del cache:
 -------------------------------
