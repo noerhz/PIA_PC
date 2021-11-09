@@ -29,6 +29,7 @@ def validarPuertos(begin, end):
 
 # Función para el escaneo de puertos
 def scanPort(ip, begin, end):
+    puertosAbiertos = False
     # validar si la dirección ip es correcta
     if validarIP(ip) is False:
         print("*La dirección IP ingresada es inválida")
@@ -42,11 +43,16 @@ def scanPort(ip, begin, end):
             socket_instance = socket(AF_INET, SOCK_STREAM)
             scanner_response = socket_instance.connect_ex((ip, port))
             if scanner_response == 0:
+                puertosAbiertos = True
                 resultado.append(["Puerto Abierto:", port])
             socket_instance.close()
-        myFile = open("ResultadoEscaneo.csv", "w", newline="")
-        with myFile:
-            writer = csv.writer(myFile)
-            writer.writerows(resultado)
-        print("** FIN DEL ESCANEADO **")
-        print("Revisa el archivo ResultadoEscaneo.csv")
+        if puertosAbiertos is True:
+            myFile = open("ResultadoEscaneo.csv", "w", newline="")
+            with myFile:
+                writer = csv.writer(myFile)
+                writer.writerows(resultado)
+            print("** FIN DEL ESCANEADO **")
+            print("Revisa el archivo ResultadoEscaneo.csv")
+        else:
+            print("[!] No se encontraron puertos abiertos")
+            print("::: no hay puertos abiertos en el rango establecido")
