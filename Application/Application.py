@@ -9,8 +9,8 @@ import logging
 import time
 import os
 
-
-logging.basicConfig(filename="Info.log", level="DEBUG")
+FORMAT='%(asctime)s:%(message)s'
+logging.basicConfig(filename="Info.log", format=FORMAT, datefmt='%m/%d/%Y %I:%M:%S %p', level=logging.DEBUG)
 
 parser = argparse.ArgumentParser(description="Descripcion de los parametros:")
 # opc: opciones
@@ -36,15 +36,15 @@ parser.add_argument("-domain", type=str, help="-domain '(www.twitter.com / twitt
 # Si quieres enviar un mensaje especifica el tipo de correo
 # puede ser: 1=gmail, 2=outlook/hotmail
 parser.add_argument("-t_email", type=int, help='-t_email (1=gmail, 2=hotmail/outlook)')
-# Agrega tu correo y tu contraseña para accesaar a tu cuenta de correo
+# Agrega tu correo y tu contraseña para accesar a tu cuenta de correo
 parser.add_argument("-email", type=str, help='-email "email@ejemplo.com"')
 parser.add_argument("-passw", type=str, help='-pass "tu_contraseña"')
 # Agrega el correo al que quieres enviar tu mensaje
-parser.add_argument("-to", type=str, help='-to "email@example.com"')
+parser.add_argument("-to", type=str, help='-to "email@ejemplo.com"')
 # Agrega el asunto del correo
 parser.add_argument("-subj", type=str, help='-subj "subject"')
 # Si quieres enviar una imagen en tu correo, agrega estos parametros
-parser.add_argument("-pic", type=str, help='-pic "name_picture.jpg","c:\\users\\name\\pictures"')
+parser.add_argument("-pic", type=str, help='-pic "nombre_imagen.jpg","c:\\users\\name\\pictures"')
 # Si quieres saber que puertos estan abiertos
 parser.add_argument("-ip", type=str, help='-ip "IP a escanear"')
 parser.add_argument("-i", type=int, help='-i "Inicio de los puertos a escanear"')
@@ -69,6 +69,7 @@ if __name__ == '__main__':
             # hackeo de mensajes
             elif(data.opc == 3):
                 print(":[*] Mensaje hackeado:", mold.hackMessage())
+            logging.info("Mensaje con Cifrado Cesar")
         # Cifrado de Transposicion
         elif data.t_cifr == 2:
             t = Transposition()
@@ -87,12 +88,13 @@ if __name__ == '__main__':
                     print(":[*] Mensaje hackeado:", t.hackMessage())
                     print()
                 else:
-                    mensage = "Escogiste una opcion que no existe"
-                    logging.error(mensage, data.opc)
+                    message = "[!] Error en transposicion, escogiste una opcion que no existe."
+                    logging.error(message, data.opc)
                     print("[!] Agregaste una opcion invalida")
                     print("::: Cerrando programa...")
+                logging.info("Mensaje con cifrado de Transposicion.")
             except:
-                data.warning("Agregaste un mensaje invalido")
+                data.warning("Transposicion, gregaste un mensaje invalido")
                 print(":[!] Agregaste una oracion/caracter invalido.")
                 print(":::: Cerrando programa...")
                 time.sleep(1)
@@ -100,10 +102,17 @@ if __name__ == '__main__':
     elif(data.t_cifr is None):
         # Investiga una organizacion con llave API
         if data.opc == 4:
-            h = Hunter(data.apikey, data.domain)
-            h.search()
-            h.showInfo(h.search())
-            h.saveInfo(h.search())
+            if(data.apikey is not None and data.domain is not None):
+                h = Hunter(data.apikey, data.domain)
+                h.search()
+                h.showInfo(h.search())
+                h.saveInfo(h.search())
+                loggin.info("Investigar organizacion")
+            else:
+                logging.warning("[!]Error en investigar organizacion, hacen falta parametros.")    
+                print(":[!] Hacen falta parametros para ejecutar el programa")
+                print(":::: Cerrando programa...")
+                time.sleep(1)
 
         elif data.opc == 5:
             se = SendEmail()
@@ -114,13 +123,13 @@ if __name__ == '__main__':
             subject = data.subj
             se.setMessage(data.msg)
             msg = se.getMessage()
+            logging.info("Envio de correos")
 
             part = ""
             if(t_email is not None and email is not None and
                password is not None and to is not None and
                subject is not None and msg is not None and
                data.pic is not None):
-
                 part = ""
                 picture = ""
                 directory = ""
@@ -143,6 +152,7 @@ if __name__ == '__main__':
                     se.setTo(to)
                     se.setPictures(picture, directory)
                     se.sendEmail(subject, msg)
+                    logging.info("Envio de correos con imagen")         
 
                 else:
                     mensage = "! agrega el nombre de la imagen y su directorio"
@@ -163,27 +173,32 @@ if __name__ == '__main__':
                 se.sendEmail(subject, msg)
 
             else:
-                logging.warning("Tienes que agregar mas parametros")
-                print("[!] Se necesitan mas parametros para enviar el correo")
+                logging.warning("[!]Error en envio de correos, hacen falta parametros")
+                print("[!] Se necesitan mas parametros para enviar el correo.")
 
         elif data.opc == 6:
             if ((data.ip is not None) and (data.i is not None)and
                (data.f is not None)):
                 scanPort(data.ip, data.i, data.f)
-            else:
-                print("No se puede realizar el escaneo", end=", ")
-                print("revisa los parametros ingresados")
-                print("Para realizar el escaneo debe tener lo siguiente:")
                 print("* Ip: -ip")
                 print("* Puerto de inicio del escaneo: -i")
                 print("* Puerto de final del escaneo: -f")
+                logging.info("Escaneo de puertos.")
+
+            else:
+                logging.warning("[!]Error en escaneo de puertos, hacen falta parametros")
+                print("[!] No se puede realizar el escaneo", end=", ")
+                print("hacen falta parametros.")
+                print("::: Cerrando programa...")
+                time.sleep(1)
 
         elif data.opc == 7:
             directory = os.getcwd()
             os.system(f"powershell -ExecutionPolicy ByPass ./DNS.ps1 -TargetFolder \"{directory}\"")
+            logging.info("DNS del cache")
 
         else:
-            logging.warning("Tienes que agregar una opcion valida")
+            logging.warning("[!]Error en escaneo de puertos, hacen falta parametros.")
             print("[!] Error")
             print("::: Probablemente no agrego ninguna opcion")
             print("::: o la opcion seleccionada no existe.")
@@ -192,7 +207,8 @@ if __name__ == '__main__':
         print("[!] Ese tipo de cifrado no existe")
 
 # except:
-# logging.warning("Tal vez no agrego un parametro necesario/correcto")
+logging.warning("[!]Error, tal vez no agrego un parametro necesario/correcto")
 # print("[!] Error")
 # print("::: Tal vez no agrego un parametro necesario/correcto")
 # print("::: o agrego uno invalido")
+
