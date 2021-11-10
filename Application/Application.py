@@ -107,7 +107,7 @@ if __name__ == '__main__':
                 h.search()
                 h.showInfo(h.search())
                 h.saveInfo(h.search())
-                loggin.info("Investigar organizacion")
+                logging.info("Investigar organizacion")
             else:
                 logging.warning("[!]Error en investigar organizacion, hacen falta parametros.")    
                 print(":[!] Hacen falta parametros para ejecutar el programa")
