@@ -198,7 +198,7 @@ if __name__ == '__main__':
             logging.info("DNS del cache")
 
         else:
-            logging.warning("[!]Error en escaneo de puertos, hacen falta parametros.")
+            logging.warning("[!]Error, agrego una opcion que no existe o ninguna.")
             print("[!] Error")
             print("::: Probablemente no agrego ninguna opcion")
             print("::: o la opcion seleccionada no existe.")
@@ -207,8 +207,9 @@ if __name__ == '__main__':
         print("[!] Ese tipo de cifrado no existe")
 
 # except:
-logging.warning("[!]Error, tal vez no agrego un parametro necesario/correcto")
+# logging.warning("[!]Error, tal vez no agrego un parametro necesario/correcto")
 # print("[!] Error")
 # print("::: Tal vez no agrego un parametro necesario/correcto")
 # print("::: o agrego uno invalido")
+
 
