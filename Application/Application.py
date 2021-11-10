@@ -180,13 +180,13 @@ if __name__ == '__main__':
             if ((data.ip is not None) and (data.i is not None)and
                (data.f is not None)):
                 scanPort(data.ip, data.i, data.f)
-                print("* Ip: -ip")
-                print("* Puerto de inicio del escaneo: -i")
-                print("* Puerto de final del escaneo: -f")
+                print("* Ip: ", str(data.ip))
+                print("* Puerto de inicio del escaneo: ", str(data.i))
+                print("* Puerto de final del escaneo: ", str(data.f))
                 logging.info("Escaneo de puertos.")
 
             else:
-                logging.warning("[!]Error en escaneo de puertos, hacen falta parametros")
+                logging.warning("[!]Error en escaneo de puertos, hacen falta parametros.")
                 print("[!] No se puede realizar el escaneo", end=", ")
                 print("hacen falta parametros.")
                 print("::: Cerrando programa...")
