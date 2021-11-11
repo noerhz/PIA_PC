@@ -36,7 +36,6 @@ class Hunter:
 		if len(apikey) == 40:
 			print("[*] Llave API valida")
 			self.apikey = apikey
-
 		else:
 			print("[!] Esta no es una llave API de Hunter")
 			print("::: Cerrando el programa...")
@@ -99,8 +98,8 @@ class Hunter:
 					else:
 						print('Correos personales encontrados: ' + results['emails'][0]['value'])
 						print('Nombres encontrados: ' +
-							   results['emails'][0]['nombre'] +
-							   ' ' + results['emails'][0]['apellido'])
+							   results['emails'][0]['first_name'] +
+							   ' ' + results['emails'][0]['last_name'])
 
 		except:
 			print("[!] Error")
@@ -123,8 +122,8 @@ class Hunter:
 				file.write('No se encontraron emails o nombres')
 			else:
 				file.write('Correos encontrados: ' + results['emails'][0]['value'] + '\n')
-				file.write('Nombres encontrados: ' + results['emails'][0]['nombre'])
-				file.write(' ' + results['emails'][0]['apellido'] + '\n')
+				file.write('Nombres encontrados: ' + results['emails'][0]['first_name'])
+				file.write(' ' + results['emails'][0]['last_name'] + '\n')
 			file.close()
 
 		except:
